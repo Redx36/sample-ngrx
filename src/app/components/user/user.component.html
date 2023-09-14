@@ -1,0 +1,22 @@
+<h1>Users</h1>
+
+<div *ngIf="(loading$ | async); else userContent">
+  <!-- Show a loading indicator or message while data is loading -->
+  Loading users...
+</div>
+
+
+
+<ng-template #userContent>
+
+  <div *ngIf="(users$ | async) !== undefined">
+    <ul>
+      <li *ngFor="let user of (users$ | async)">{{ user.username }}</li>
+      <li >{{ (users$ | async)?.length }}</li>
+    </ul>
+  </div>
+  <ng-template #noUsers>
+    <!-- Display a message if there are no users -->
+    No users available.
+  </ng-template>
+</ng-template>
